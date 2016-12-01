@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { VirtSesameTransactionConfig.class, ReplaceMotif.class })
+@SpringApplicationConfiguration(classes = { VirtSesameTransactionConfig.class, ReplaceMotifTest.class })
 @Configuration
 @EnableAutoConfiguration 
 public class ReplaceMotifTest {
