@@ -23,7 +23,7 @@
 	<dependency>
 	  <groupId>org.glycoinfo</groupId>
 	  <artifactId>batch</artifactId>
-	  <version>0.3.5-SNAPSHOT</version>
+	  <version>0.3.8-SNAPSHOT</version>
 	</dependency>
   </dependencies>
 
