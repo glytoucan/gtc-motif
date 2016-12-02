@@ -52,6 +52,10 @@
 			<id>glycoinfo</id>
 			<url>http://nexus.glycoinfo.org/content/groups/public</url>
 		</repository>
+		<repository>
+			<id>glycoinfo-snapshots</id>
+			<url>http://nexus.glycoinfo.org/content/repositories/snapshots/</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
