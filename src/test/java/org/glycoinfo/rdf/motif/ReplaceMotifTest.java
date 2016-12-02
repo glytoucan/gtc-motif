@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { VirtSesameTransactionConfig.class, ReplaceMotif.class })
+@SpringApplicationConfiguration(classes = { VirtSesameTransactionConfig.class, ReplaceMotifTest.class })
 @Configuration
 @EnableAutoConfiguration 
 public class ReplaceMotifTest {
@@ -36,15 +36,18 @@ public class ReplaceMotifTest {
 		return replaceMotif;
 	}
 	
-	@Test
-	public void testReplaceMotif() throws SparqlException {
-		String test = getReplaceMotif().getSparql();
-		System.out.println(test);
-	}
+//	@Test
+//	public void testReplaceMotif() throws SparqlException {
+//		String test = getReplaceMotif().getSparql();
+//		System.out.println(test);
+//	}
 	
 	@Test
 	@Transactional
 	public void replaceSparql() throws SparqlException {
-		sparqlDAO.execute(getReplaceMotif());
+//		sparqlDAO.execute(getReplaceMotif());
+//		sparqlDAO.insert(getReplaceMotif());
+		sparqlDAO.delete(getReplaceMotif());
 	}
+
 }
