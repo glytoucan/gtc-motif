@@ -28,7 +28,7 @@ public class SelectMotif extends SelectSparqlBean implements Motif {
 				+ "PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>\n"
 				+ "PREFIX glycan:	<http://purl.jp/bio/12/glyco/glycan#>\n"
 				+ "PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>\n\n";
-		this.select = "DISTINCT ?motif_name ?glycosequence ?reduing_end \n";
+		this.select = "DISTINCT ?MotifName ?Glycosequence ?ReducingEnd \n";
 	}
 	
 	@Override
