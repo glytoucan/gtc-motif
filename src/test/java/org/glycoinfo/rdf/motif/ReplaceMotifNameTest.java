@@ -56,6 +56,7 @@ public class ReplaceMotifNameTest {
 	@Test
 	@Transactional
 	public void replaceSparql() throws SparqlException {
+		sparqlDAO.query(getSelectMotif());
 		sparqlDAO.execute(getReplaceMotifName());
 		sparqlDAO.query(getSelectMotif());
 //		sparqlDAO.insert(getReplaceMotif());
