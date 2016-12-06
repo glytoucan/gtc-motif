@@ -12,6 +12,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /*
@@ -42,23 +43,30 @@ public class InsertMotifTest  {
 	SelectMotif getSelectMotif() {
 		SelectMotif selectMotif = new SelectMotif();
 		SparqlEntity sparqlEntity = new SparqlEntity();
-		sparqlEntity.setValue(Motif.AccessionNumber, "G12345AA");
+		sparqlEntity.setValue(Motif.AccessionNumber, "G00012MO");
+//		sparqlEntity.setValue(Motif.AccessionNumber, "G12345AA");
 		selectMotif.setSparqlEntity(sparqlEntity);
 		return selectMotif;
 	}
 	
+/*	
 	@Test
 	public void testInsertSparql() throws SparqlException {
 		String test = getInsertMotif().getSparql();
 		System.out.println(test);
 	}
 
-/*	
 	@Test
 	@Transactional
 	public void insertSpalrql() throws SparqlException {
 		sparqlDAO.insert(getInsertMotif());
 	}
  */
+	@Test
+	@Transactional
+	public void selectSparql() throws SparqlException {
+		sparqlDAO.query(getSelectMotif());
+	}
+	
 	
 }
