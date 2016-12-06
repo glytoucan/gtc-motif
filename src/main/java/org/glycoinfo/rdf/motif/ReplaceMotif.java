@@ -93,7 +93,7 @@ INSERT
 			this.insert = "<http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(InsertAccessionNumber) + "> \n" 
 					+ " a glycan:glycan_motif ; \n"
 					+ " rdfs:label ?MotifName ; \n"
-					+ " glycan:has_glycosequence ?GSequence ; \n"
+					+ " glycan:has_glycosequence <http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(InsertAccessionNumber) + "/glycoct>; \n"
 					+ " glytoucan:is_reducing_end ?ReducingEnd .";
 		}
 		return insert;		

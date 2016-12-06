@@ -42,12 +42,29 @@ public class ReplaceMotifTest {
 //		System.out.println(test);
 //	}
 	
+	@Bean
+	SelectMotif getSelectMotif() {
+		SelectMotif selectMotif = new SelectMotif();
+		SparqlEntity sparqlEntity = new SparqlEntity();
+//		sparqlEntity.setValue(Motif.AccessionNumber, "G12345MO");
+		sparqlEntity.setValue(Motif.AccessionNumber, "G12345MO");
+		selectMotif.setFrom("FROM <http://rdf.glytoucan.org/motif>\n");
+		selectMotif.setSparqlEntity(sparqlEntity);
+		return selectMotif;
+	}
+//	@Test
+//	public void testSelectMotif() throws SparqlException {
+//		String test = getSelectMotif().getSparql();
+//		System.out.println(test);
+//	}
+	
 	@Test
 	@Transactional
 	public void replaceSparql() throws SparqlException {
-//		sparqlDAO.execute(getReplaceMotif());
+		sparqlDAO.execute(getReplaceMotif());
+		sparqlDAO.query(getSelectMotif());
 //		sparqlDAO.insert(getReplaceMotif());
-		sparqlDAO.delete(getReplaceMotif());
+//		sparqlDAO.delete(getReplaceMotif());
 	}
 
 }
