@@ -37,13 +37,13 @@ public class InsertMotif extends InsertSparqlBean implements Motif {
 	@Override
 	public String getInsert() {
 		if (StringUtils.isNotBlank(getSparqlEntity().getValue(AccessionNumber))) {
-			this.insert = "<http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(AccessionNumber) +"> \n"
-					+ " a glycan:glycan_motif; \n"
-					+ " rdfs:label " + "?MotifName; \n"
-					+ " glycan:has_glycosequence " + "?Glycosequence; \n"
-					+ " glytoucan:is_reducing_end " + "?ReducingEnd. \n";
+			this.insert = "<http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(AccessionNumber) + "> \n" 
+					+ " a glycan:glycan_motif ; \n"
+					+ " glycan:has_glycosequence <http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(AccessionNumber) + "/glycoct>; \n"
+					+ " rdfs:label \"" + getSparqlEntity().getValue(MotifName) + "\"@en ; \n" 
+					+ " glytoucan:is_reducing_end " + getSparqlEntity().getValue(ReducingEnd) + " . \n";
 		}
-		return this.insert;
+		return insert;
 	}
 
         

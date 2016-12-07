@@ -34,7 +34,10 @@ public class InsertMotifTest  {
 	InsertMotif getInsertMotif() {
 		InsertMotif insertMotif = new InsertMotif();
 		SparqlEntity sparqlEntity = new SparqlEntity();
-		sparqlEntity.setValue(Motif.AccessionNumber, "G122345AA");
+		sparqlEntity.setValue(Motif.AccessionNumber, "G12347MO");
+		sparqlEntity.setValue(Motif.MotifName, "New Glycan Motif");
+		sparqlEntity.setValue(Motif.ReducingEnd, "false");
+		insertMotif.setGraph("http://rdf.glytoucan.org/motif/test");
 		insertMotif.setSparqlEntity(sparqlEntity);
 		return insertMotif;
 	}
@@ -43,8 +46,10 @@ public class InsertMotifTest  {
 	SelectMotif getSelectMotif() {
 		SelectMotif selectMotif = new SelectMotif();
 		SparqlEntity sparqlEntity = new SparqlEntity();
-		sparqlEntity.setValue(Motif.AccessionNumber, "G00012MO");
+		sparqlEntity.setValue(Motif.AccessionNumber, "G12347MO");
+//		sparqlEntity.setValue(Motif.AccessionNumber, "G00012MO");
 //		sparqlEntity.setValue(Motif.AccessionNumber, "G12345AA");
+		selectMotif.setFrom("FROM <http://rdf.glytoucan.org/motif/test>\n");
 		selectMotif.setSparqlEntity(sparqlEntity);
 		return selectMotif;
 	}
@@ -63,8 +68,10 @@ public class InsertMotifTest  {
 	}
  */
 	@Test
-	@Transactional
+//	@Transactional
 	public void selectSparql() throws SparqlException {
+		sparqlDAO.query(getSelectMotif());
+		sparqlDAO.insert(getInsertMotif());
 		sparqlDAO.query(getSelectMotif());
 	}
 	
