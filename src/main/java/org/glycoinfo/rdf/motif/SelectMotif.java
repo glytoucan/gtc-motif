@@ -28,14 +28,16 @@ public class SelectMotif extends SelectSparqlBean implements Motif {
 				+ "PREFIX xsd:	<http://www.w3.org/2001/XMLSchema#>\n"
 				+ "PREFIX glycan:	<http://purl.jp/bio/12/glyco/glycan#>\n"
 				+ "PREFIX glytoucan: <http://www.glytoucan.org/glyco/owl/glytoucan#>\n\n";
-		this.select = "DISTINCT ?MotifName ?Glycosequence ?ReducingEnd \n";
+		this.select = "DISTINCT ?GlycanMotif ?MotifName ?Glycosequence ?ReducingEnd \n";
 	}
 	
 	@Override
 	public String getWhere() throws SparqlException {
 		String where = "\n"
-				+ "<http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(AccessionNumber) +"> \n"
-				+ " a glycan:glycan_motif; \n"
+//				+ "<http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(AccessionNumber) +"> \n"
+//				+ " a glycan:glycan_motif; \n"
+				+ " VALUES ?GlycanMotif { <http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(AccessionNumber) + "> }  \n"
+				+ " ?GlycanMotif a glycan:glycan_motif; \n"
 				+ " rdfs:label " + "?MotifName; \n"
 				+ " glycan:has_glycosequence " + "?Glycosequence; \n"
 				+ " glytoucan:is_reducing_end " + "?ReducingEnd. \n";
