@@ -6,12 +6,9 @@ import org.apache.commons.logging.LogFactory;
 import org.glycoinfo.rdf.SparqlException;
 import org.glycoinfo.rdf.dao.SparqlDAO;
 import org.glycoinfo.rdf.dao.SparqlEntity;
-import org.glycoinfo.rdf.motif.DeleteMotif;
 import org.glycoinfo.rdf.motif.InsertMotif;
 import org.glycoinfo.rdf.motif.Motif;
 import org.glycoinfo.rdf.motif.ReplaceMotif;
-import org.glycoinfo.rdf.motif.ReplaceMotifName;
-import org.glycoinfo.rdf.motif.ReplaceReducingEnd;
 import org.glycoinfo.rdf.motif.SelectMotif;
 import org.glycoinfo.rdf.service.exception.MotifException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +26,12 @@ public class MotifProcedure {
 	@Autowired
 	InsertMotif insertMotif;
 
+	@Autowired
+	ReplaceMotif replaceMotif;
 /*
 	@Autowired
 	DeleteMotif deleteMotif;
 	
-	@Autowired
-	ReplaceMotif replaceMotif;
 	
 	@Autowired
 	ReplaceMotifName replaceMotifName;
@@ -45,6 +42,25 @@ public class MotifProcedure {
 	
 	
 	// Replace Motif
+	@Transactional
+	public String replaceMotif(String deleteAccessionNumber, String insertAccessionNumber) throws MotifException {
+		if (StringUtils.isNotBlank(deleteAccessionNumber) && StringUtils.isNotBlank(insertAccessionNumber)) {
+			SparqlEntity sparqlEntity = new SparqlEntity();
+			sparqlEntity.setValue(Motif.DeleteAccessionNumber, deleteAccessionNumber);
+			sparqlEntity.setValue(Motif.InsertAccessionNumber, insertAccessionNumber);
+			replaceMotif.setSparqlEntity(sparqlEntity);
+			try {
+				sparqlDAO.insert(replaceMotif);
+			} catch (SparqlException e) {
+				throw new MotifException(e);
+			}
+		} else {
+			logger.info("some parameters are null");
+			throw new MotifException("delete accession number or insert accession number cannot be null.");
+		}
+		String result = deleteAccessionNumber + " was replaced to " + insertAccessionNumber + ".";
+		return result;
+	}
 	// Replace Motif Name
 	// Replace Reducing End
 	// Add One Motif
