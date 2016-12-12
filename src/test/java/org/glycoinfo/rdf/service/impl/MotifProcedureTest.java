@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.glycoinfo.rdf.dao.SparqlDAO;
 import org.glycoinfo.rdf.dao.virt.VirtSesameTransactionConfig;
 import org.glycoinfo.rdf.service.exception.MotifException;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,13 @@ public class MotifProcedureTest {
 	
 	@Test
 	@Transactional
-	public void testAddMotif() throws MotifException {
-		motifProcedure.searchOneMotif("G12345MO");
-		motifProcedure.addOneMotif("G12345MO", "New Glycan Motif", "false");
-		motifProcedure.searchOneMotif("G12345MO");
+	public void testMotif() throws MotifException {
+		String id = motifProcedure.replaceMotif("G00012MO", "G12345MO");
+		Assert.assertNotNull(id);
+//		Assert.assertNull(id);
+//		motifProcedure.searchOneMotif("G12345MO");
+//		motifProcedure.addOneMotif("G12345MO", "New Glycan Motif", "false");
+//		motifProcedure.searchOneMotif("G12345MO");
 //		motifProcedure.deleteMotif("G12345MO", "12345");
 //		motifProcedure.searchMotif("G12345MO");
 //		String id = motifProcedure.addMotif("G12345MO", "123456");

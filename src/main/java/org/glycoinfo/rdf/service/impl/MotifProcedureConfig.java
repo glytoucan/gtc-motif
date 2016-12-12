@@ -3,6 +3,7 @@ package org.glycoinfo.rdf.service.impl;
 import org.glycoinfo.rdf.SparqlException;
 import org.glycoinfo.rdf.motif.DeleteMotif;
 import org.glycoinfo.rdf.motif.InsertMotif;
+import org.glycoinfo.rdf.motif.ReplaceMotif;
 import org.glycoinfo.rdf.motif.SelectMotif;
 import org.springframework.context.annotation.Bean;
 
@@ -28,6 +29,15 @@ public class MotifProcedureConfig implements GraphConfig {
 		DeleteMotif deleteMotif = new DeleteMotif();
 		deleteMotif.setGraph(graph + "/motif");
 		return deleteMotif;
+	}
+	
+	// Replace
+	@Bean
+	ReplaceMotif getReplaceMotif() {
+		ReplaceMotif replaceMotif = new ReplaceMotif();
+		replaceMotif.setFromGraph(graph + "/motif");
+		replaceMotif.setToGraph(graph + "/motif");
+		return replaceMotif;
 	}
 	
 	// Select
