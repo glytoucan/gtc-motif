@@ -27,8 +27,8 @@ public class ReplaceMotifTest {
 	ReplaceMotif getReplaceMotif() {
 		ReplaceMotif replaceMotif = new ReplaceMotif();
 		SparqlEntity sparqlEntity = new SparqlEntity();
-		sparqlEntity.setValue(Motif.DeleteAccessionNumber, "G00012MO");
-		sparqlEntity.setValue(Motif.InsertAccessionNumber, "G12345MO");
+		sparqlEntity.setValue(Motif.DeleteAccessionNumber, "G00017MO");
+		sparqlEntity.setValue(Motif.InsertAccessionNumber, "G12349MO");
 		replaceMotif.setFromGraph("http://rdf.glytoucan.org/motif");
 		replaceMotif.setToGraph("http://rdf.glytoucan.org/motif");
 		replaceMotif.setUsing("http://rdf.glytoucan.org/motif");
@@ -47,7 +47,7 @@ public class ReplaceMotifTest {
 		SelectMotif selectMotif = new SelectMotif();
 		SparqlEntity sparqlEntity = new SparqlEntity();
 //		sparqlEntity.setValue(Motif.AccessionNumber, "G12345MO");
-		sparqlEntity.setValue(Motif.AccessionNumber, "G12345MO");
+		sparqlEntity.setValue(Motif.AccessionNumber, "G12349MO");
 		selectMotif.setFrom("FROM <http://rdf.glytoucan.org/motif>\n");
 		selectMotif.setSparqlEntity(sparqlEntity);
 		return selectMotif;

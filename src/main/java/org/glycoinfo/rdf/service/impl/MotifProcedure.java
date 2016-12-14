@@ -62,7 +62,7 @@ public class MotifProcedure {
 			logger.info("some parameters are null");
 			throw new MotifException("delete accession number or insert accession number cannot be null.");
 		}
-		String result = deleteAccessionNumber + " was replaced to " + insertAccessionNumber + ".";
+		String result = deleteAccessionNumber + " as glycan motif was replaced to " + insertAccessionNumber + ".";
 		return result;
 	}
 
@@ -70,10 +70,11 @@ public class MotifProcedure {
 	@Transactional
 	public String replaceMotifName(String accessionNumber, String motifName) throws MotifException {
 		if (StringUtils.isNotBlank(accessionNumber) && StringUtils.isNotBlank(motifName)) {
-			SparqlEntity sparqlEntity = new SparqlEntity();
-			sparqlEntity.setValue(Motif.AccessionNumber, accessionNumber);
-			sparqlEntity.setValue(Motif.MotifName, motifName);
-			replaceMotifName.setSparqlEntity(sparqlEntity);
+			// replace motif name
+			SparqlEntity sparqlEntityForReplace = new SparqlEntity();
+			sparqlEntityForReplace.setValue(Motif.AccessionNumber, accessionNumber);
+			sparqlEntityForReplace.setValue(Motif.MotifName, motifName);
+			replaceMotifName.setSparqlEntity(sparqlEntityForReplace);
 			try {
 				sparqlDAO.execute(replaceMotifName);
 			} catch (SparqlException e) {
@@ -83,7 +84,9 @@ public class MotifProcedure {
 			logger.info("some parameters are null");
 			throw new MotifException("accession number or motif name cannot be null.");
 		}
-		String result = "motif name was replaced to " + motifName + ".";
+
+//		String result = "\"" +  + "\" (" + accessionNumber + ") as motif name was replaced to " + motifName + ".";
+		String result = "(" + accessionNumber + ") as motif name was replaced to " + motifName + ".";
 		return result;
 	}
 
@@ -104,7 +107,7 @@ public class MotifProcedure {
 			logger.info("some parameters are null");
 			throw new MotifException("accession number or reducing end cannot be null.");
 		}
-		String result = "reducing end was replaced to " + reducingEnd + ".";
+		String result = "reducing end of \"" + accessionNumber + "\" was replaced to " + reducingEnd + ".";
 		return result;
 	}
 
@@ -126,7 +129,7 @@ public class MotifProcedure {
 			logger.info("some parameters are null");
 			throw new MotifException("accession number, motif name or reducing end cannot be null.");
 		}
-		String result = accessionNumber + " was registerd as " + motifName + ".";
+		String result = accessionNumber + " was registerd as glycan motif and the motif name is " + motifName + ".";
 		return result;
 	}
 
@@ -146,7 +149,7 @@ public class MotifProcedure {
 			logger.info("accession number is null");
 			throw new MotifException("accession number cannot be null.");
 		}
-		String result = accessionNumber + " was deleted."; 
+		String result = accessionNumber + " was remove from glycan motif data."; 
 		return result;
 	}
 
@@ -158,7 +161,7 @@ public class MotifProcedure {
 			sparqlEntity.setValue(Motif.AccessionNumber, accessionNumber);
 			selectMotif.setSparqlEntity(sparqlEntity);
 			try {
-			return sparqlDAO.query(selectMotif);
+				return sparqlDAO.query(selectMotif);
 			} catch (SparqlException e) {
 				throw new MotifException(e);
 			}

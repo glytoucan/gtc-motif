@@ -37,22 +37,39 @@ public class MotifProcedureTest {
 	@Test
 	@Transactional
 	public void testMotif() throws MotifException {
-//		String id = motifProcedure.replaceMotif("G00017MO", "G12349MO");
-//		String id = motifProcedure.removeOnMotif("G00017MO");
-//		String id = motifProcedure.removeOnMotif("G00016MO");
-//		String id = motifProcedure.replaceMotifName("G12345MO", "New Glycan Motif");
+//		String id = motifProcedure.replaceMotif("G00018MO", "G12349MO");
+//		logger.debug("result:> " + id);
+//		Assert.assertNotNull(id);
+
+//		String id = motifProcedure.replaceMotifName("G00012MO", "New Glycan Motif");
+//		logger.debug("result:> " + id);
+//		Assert.assertNotNull(id);
+
 //		String id = motifProcedure.replaceReducingEnd("G12345MO", "false");
+//		logger.debug("result:> " + id);
+//		Assert.assertNotNull(id);
+
 //		String id = motifProcedure.addOneMotif("G12344MO", "New glycan motif tyep 2", "true");
-		List<SparqlEntity> id = motifProcedure.searchOneMotif("G12345MO");
-		for (SparqlEntity sparqlEntity : id) {
+//		logger.debug("result:> " + id);
+//		motifProcedure.searchOneMotif("G12344MO");
+//		Assert.assertNotNull(id);
+
+//		String id = motifProcedure.removeOnMotif("G00018MO");
+//		logger.debug("result:> " + id);
+//		Assert.assertNotNull(id);
+
+		List<SparqlEntity> results = motifProcedure.searchOneMotif("G00045MO");
+		for (SparqlEntity sparqlEntity : results) {
 			String sparqlreturnValue = sparqlEntity.getValue("MotifName");
+			logger.debug("MotifName:> " + sparqlreturnValue);
 			Assert.assertNotNull(sparqlreturnValue);
 		}
-//		Assert.assertNull(id);
+
 //		motifProcedure.searchOneMotif("G12345MO");
 //		motifProcedure.deleteMotif("G12345MO", "12345");
 //		motifProcedure.searchMotif("G12345MO");
 //		String id = motifProcedure.addMotif("G12345MO", "123456");
 //		Assert.assertNotNull(id);
+//		Assert.assertNull(id);
 	}
 }
