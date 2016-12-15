@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.glycoinfo.rdf.SparqlException;
 import org.glycoinfo.rdf.dao.SparqlDAO;
 import org.glycoinfo.rdf.dao.SparqlEntity;
 import org.glycoinfo.rdf.dao.virt.VirtSesameTransactionConfig;
+import org.glycoinfo.rdf.motif.Motif;
 import org.glycoinfo.rdf.service.exception.MotifException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -72,4 +74,62 @@ public class MotifProcedureTest {
 //		Assert.assertNotNull(id);
 //		Assert.assertNull(id);
 	}
+	
+	
+
+  @Test
+  @Transactional
+  public void testReplaceMotif() throws MotifException {
+    
+    // select the original motif
+  List<SparqlEntity> results = motifProcedure.searchOneMotif("G00021MO");
+  for (SparqlEntity sparqlEntity : results) {
+    String sparqlreturnValue = sparqlEntity.getValue("MotifName");
+    logger.debug("MotifName:> " + sparqlreturnValue);
+    // confirm the name
+    Assert.assertNotNull(sparqlreturnValue);
+  }
+
+    // select the new motif?
+  // select the original motif
+ results = motifProcedure.searchOneMotif("G54161DR");
+for (SparqlEntity sparqlEntity : results) {
+  String sparqlreturnValue = sparqlEntity.getValue("MotifName");
+  logger.debug("MotifName:> " + sparqlreturnValue);
+  // confirm it does not exist?
+  Assert.assertNull(sparqlreturnValue);
+}
+    
+    // replace the original with the new
+    String id = motifProcedure.replaceMotif("G00021MO", "G54161DR");
+    logger.debug("result:> " + id);
+    Assert.assertNotNull(id);
+    
+    // select the new motif
+    // select the new motif?
+  // select the original motif
+ results = motifProcedure.searchOneMotif("G54161DR");
+for (SparqlEntity sparqlEntity : results) {
+  String sparqlreturnValue = sparqlEntity.getValue("MotifName");
+  logger.debug("MotifName:> " + sparqlreturnValue);
+  // confirm it does not exist?
+  Assert.assertNotNull(sparqlreturnValue);
+//confirm the name with the original
+}
+
+    
+// select the original motif
+results = motifProcedure.searchOneMotif("G00021MO");
+for (SparqlEntity sparqlEntity : results) {
+String sparqlreturnValue = sparqlEntity.getValue("MotifName");
+logger.debug("MotifName:> " + sparqlreturnValue);
+// confirm the name
+Assert.assertNotNull(sparqlreturnValue);
+}
+    
+    // confirm it does not exist?
+
+  }
+  
+  
 }
