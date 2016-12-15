@@ -90,10 +90,11 @@ INSERT
  */
 	public String getInsert() {
 		if (StringUtils.isNotBlank(getSparqlEntity().getValue(InsertAccessionNumber))) {
-			this.insert = "<http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(InsertAccessionNumber) + "> \n" 
+			this.insert = "?Saccharide glycan:has_motif  <http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(InsertAccessionNumber) + ">. \n"
+					+ "<http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(InsertAccessionNumber) + "> \n" 
 					+ " a glycan:glycan_motif ; \n"
 					+ " rdfs:label ?MotifName ; \n"
-					+ " glycan:has_glycosequence <http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(InsertAccessionNumber) + "/glycoct>; \n"
+					+ " glycan:has_glycosequence <http://rdf.glycoinfo.org/glycan/" + getSparqlEntity().getValue(InsertAccessionNumber) + "/wurcs/2.0>; \n"
 					+ " glytoucan:is_reducing_end ?ReducingEnd .";
 		}
 		return insert;		
