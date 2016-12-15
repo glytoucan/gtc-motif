@@ -23,7 +23,6 @@ public class ReplaceMotifTest {
 	@Autowired
 	SparqlDAO sparqlDAO;
 
-	@Bean
 	ReplaceMotif getReplaceMotif() {
 		ReplaceMotif replaceMotif = new ReplaceMotif();
 		SparqlEntity sparqlEntity = new SparqlEntity();
@@ -42,7 +41,7 @@ public class ReplaceMotifTest {
 //		System.out.println(test);
 //	}
 	
-	@Bean
+	
 	SelectMotif getSelectMotif() {
 		SelectMotif selectMotif = new SelectMotif();
 		SparqlEntity sparqlEntity = new SparqlEntity();
@@ -66,5 +65,6 @@ public class ReplaceMotifTest {
 //		sparqlDAO.insert(getReplaceMotif());
 //		sparqlDAO.delete(getReplaceMotif());
 	}
+
 
 }
