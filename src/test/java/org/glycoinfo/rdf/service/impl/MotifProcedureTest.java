@@ -60,12 +60,12 @@ public class MotifProcedureTest {
 //		logger.debug("result:> " + id);
 //		Assert.assertNotNull(id);
 
-		List<SparqlEntity> results = motifProcedure.searchOneMotif("G00045MO");
-		for (SparqlEntity sparqlEntity : results) {
-			String sparqlreturnValue = sparqlEntity.getValue("MotifName");
-			logger.debug("MotifName:> " + sparqlreturnValue);
-			Assert.assertNotNull(sparqlreturnValue);
-		}
+//		List<SparqlEntity> results = motifProcedure.searchOneMotif("G00045MO");
+//		for (SparqlEntity sparqlEntity : results) {
+//			String sparqlreturnValue = sparqlEntity.getValue("MotifName");
+//			logger.debug("MotifName:> " + sparqlreturnValue);
+//			Assert.assertNotNull(sparqlreturnValue);
+//		}
 
 //		motifProcedure.searchOneMotif("G12345MO");
 //		motifProcedure.deleteMotif("G12345MO", "12345");
