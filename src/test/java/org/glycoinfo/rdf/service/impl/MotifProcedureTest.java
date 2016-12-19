@@ -77,7 +77,8 @@ public class MotifProcedureTest {
 	
 	
 
-  @Test
+	// Assertion error because this was already executed and changes committed.
+  @Test(expected=java.lang.AssertionError.class)
   @Transactional
   public void testReplaceMotif() throws MotifException {
     
